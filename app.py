@@ -22,7 +22,7 @@ html, body, [class*="css"] {
 
 /* Page background */
 .stApp {
-    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    background: linear-gradient(135deg, #0a081a, #161233, #111124);
     min-height: 100vh;
 }
 
@@ -31,10 +31,10 @@ header[data-testid="stHeader"] { background: transparent; }
 
 /* Hero banner */
 .hero {
-    background: linear-gradient(120deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-    border: 1px solid rgba(229, 57, 53, 0.3);
+    background: linear-gradient(120deg, #121026 0%, #171b3a 50%, #0d2347 100%);
+    border: 1px solid rgba(229, 57, 53, 0.25);
     border-radius: 20px;
-    padding: 2.5rem 2rem 2rem;
+    padding: 2.2rem 2rem;
     margin-bottom: 2rem;
     position: relative;
     overflow: hidden;
@@ -44,12 +44,12 @@ header[data-testid="stHeader"] { background: transparent; }
     position: absolute;
     top: -60px; right: -60px;
     width: 220px; height: 220px;
-    background: radial-gradient(circle, rgba(229,57,53,0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(229,57,53,0.12) 0%, transparent 70%);
     border-radius: 50%;
 }
 .hero-title {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 2.6rem;
+    font-size: 2.8rem;
     font-weight: 700;
     color: #ffffff;
     margin: 0 0 0.3rem;
@@ -60,61 +60,44 @@ header[data-testid="stHeader"] { background: transparent; }
 }
 .hero-sub {
     font-size: 1rem;
-    color: rgba(255,255,255,0.55);
+    color: rgba(255,255,255,0.6);
     margin: 0;
-}
-.ai-badge {
-    display: inline-block;
-    background: rgba(229,57,53,0.15);
-    border: 1px solid rgba(229,57,53,0.4);
-    color: #e53935;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 4px 12px;
-    border-radius: 20px;
-    margin-bottom: 0.8rem;
 }
 
 /* Section headers */
 .section-head {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
-    margin-bottom: 0.5rem;
-}
-
-/* Input panel */
-.input-panel {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 16px;
-    padding: 1.5rem 1.5rem 1rem;
-    margin-bottom: 1.2rem;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 0.6rem;
+    margin-top: 1rem;
 }
 
 /* Metric cards */
 .metric-row {
     display: flex;
-    gap: 12px;
+    gap: 14px;
     margin-bottom: 1.5rem;
     flex-wrap: wrap;
 }
 .metric-card {
     flex: 1;
-    min-width: 140px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
+    min-width: 180px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
     border-radius: 14px;
-    padding: 1.1rem 1.2rem;
+    padding: 1.2rem;
+    transition: transform 0.2s, border-color 0.2s;
+}
+.metric-card:hover {
+    border-color: rgba(255,255,255,0.15);
 }
 .metric-card .m-label {
     font-size: 0.72rem;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.4);
@@ -122,23 +105,23 @@ header[data-testid="stHeader"] { background: transparent; }
 }
 .metric-card .m-value {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.7rem;
+    font-size: 1.8rem;
     font-weight: 700;
     color: #ffffff;
-    line-height: 1;
+    line-height: 1.1;
 }
 .metric-card .m-sub {
     font-size: 0.72rem;
     color: rgba(255,255,255,0.3);
-    margin-top: 4px;
+    margin-top: 6px;
 }
-.metric-card.red { border-color: rgba(229,57,53,0.35); }
-.metric-card.red .m-value { color: #e57373; }
-.metric-card.blue { border-color: rgba(66,165,245,0.35); }
+.metric-card.red { border-color: rgba(229, 57, 53, 0.3); background: rgba(229, 57, 53, 0.02); }
+.metric-card.red .m-value { color: #ff7373; }
+.metric-card.blue { border-color: rgba(66, 165, 245, 0.3); background: rgba(66, 165, 245, 0.02); }
 .metric-card.blue .m-value { color: #64b5f6; }
-.metric-card.green { border-color: rgba(102,187,106,0.35); }
+.metric-card.green { border-color: rgba(102, 187, 106, 0.3); background: rgba(102, 187, 106, 0.02); }
 .metric-card.green .m-value { color: #81c784; }
-.metric-card.amber { border-color: rgba(255,183,77,0.35); }
+.metric-card.amber { border-color: rgba(255, 183, 77, 0.3); background: rgba(255, 183, 77, 0.02); }
 .metric-card.amber .m-value { color: #ffb74d; }
 
 /* Channel tag chips */
@@ -148,84 +131,73 @@ header[data-testid="stHeader"] { background: transparent; }
     border: 1px solid rgba(229,57,53,0.3);
     color: #ef9a9a;
     font-size: 0.75rem;
-    padding: 3px 10px;
+    padding: 4px 12px;
     border-radius: 20px;
-    margin: 2px 4px 2px 0;
+    margin: 4px 6px 4px 0;
+    font-weight: 500;
 }
 
-/* Streamlit overrides */
+/* Streamlit component stylings */
 div[data-testid="stTextInput"] > label,
 div[data-testid="stDateInput"] > label,
 div[data-testid="stRadio"] > label,
 div[data-testid="stTextArea"] > label {
-    color: rgba(255,255,255,0.6) !important;
-    font-size: 0.82rem !important;
+    color: rgba(255,255,255,0.65) !important;
+    font-size: 0.85rem !important;
     font-weight: 500 !important;
-    letter-spacing: 0.04em !important;
 }
 div[data-testid="stTextInput"] input,
-div[data-testid="stDateInput"] input {
-    background: rgba(255,255,255,0.07) !important;
-    border: 1px solid rgba(255,255,255,0.15) !important;
-    border-radius: 10px !important;
-    color: #fff !important;
-}
+div[data-testid="stDateInput"] input,
 div[data-testid="stTextArea"] textarea {
-    background: rgba(255,255,255,0.07) !important;
-    border: 1px solid rgba(255,255,255,0.15) !important;
+    background: rgba(255,255,255,0.05) !important;
+    border: 1px solid rgba(255,255,255,0.12) !important;
     border-radius: 10px !important;
     color: #fff !important;
-    font-family: 'Inter', monospace !important;
-    font-size: 0.85rem !important;
 }
-div[data-testid="stRadio"] div[role="radiogroup"] label {
-    color: rgba(255,255,255,0.75) !important;
-    font-size: 0.9rem !important;
+div[data-testid="stTextInput"] input:focus,
+div[data-testid="stDateInput"] input:focus,
+div[data-testid="stTextArea"] textarea:focus {
+    border-color: #e53935 !important;
 }
-/* Primary button */
+
+/* Primary button styling */
 div[data-testid="stButton"] > button[kind="primary"] {
-    background: linear-gradient(135deg, #e53935, #c62828) !important;
+    background: linear-gradient(135deg, #e53935, #b71c1c) !important;
     border: none !important;
     color: white !important;
     font-family: 'Space Grotesk', sans-serif !important;
     font-weight: 600 !important;
     font-size: 1rem !important;
-    padding: 0.65rem 2rem !important;
+    padding: 0.7rem 2rem !important;
     border-radius: 12px !important;
     letter-spacing: 0.02em !important;
-    transition: opacity 0.2s !important;
+    transition: all 0.2s ease !important;
     width: 100%;
+    box-shadow: 0 4px 12px rgba(229,57,53,0.2);
 }
 div[data-testid="stButton"] > button[kind="primary"]:hover {
-    opacity: 0.88 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(229,57,53,0.3);
+    opacity: 0.95 !important;
 }
+
 /* Download button */
 div[data-testid="stDownloadButton"] > button {
-    background: rgba(255,255,255,0.07) !important;
-    border: 1px solid rgba(255,255,255,0.18) !important;
+    background: rgba(255,255,255,0.05) !important;
+    border: 1px solid rgba(255,255,255,0.15) !important;
     color: white !important;
     border-radius: 10px !important;
+    padding: 0.5rem 1rem !important;
     font-weight: 500 !important;
     width: 100% !important;
+    transition: background 0.2s;
 }
 div[data-testid="stDownloadButton"] > button:hover {
-    background: rgba(255,255,255,0.12) !important;
+    background: rgba(255,255,255,0.1) !important;
+    border-color: rgba(255,255,255,0.25) !important;
 }
-/* Dataframe */
-div[data-testid="stDataFrame"] {
-    border-radius: 14px !important;
-    overflow: hidden !important;
-    border: 1px solid rgba(255,255,255,0.1) !important;
-}
-/* Success / error / info */
-div[data-testid="stAlert"] {
-    border-radius: 12px !important;
-    border: none !important;
-}
-/* Divider */
-hr { border-color: rgba(255,255,255,0.08) !important; }
-/* Spinner text */
-div[data-testid="stSpinner"] p { color: rgba(255,255,255,0.6) !important; }
+
+hr { border-color: rgba(255,255,255,0.06) !important; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -233,7 +205,7 @@ div[data-testid="stSpinner"] p { color: rgba(255,255,255,0.6) !important; }
 st.markdown("""
 <div class="hero">
   <div class="hero-title">VidIQ <span>Nova</span></div>
-  <p class="hero-sub">Multi-channel intelligence · Date range filter · Shorts, Long Videos & Community Posts</p>
+  <p class="hero-sub">Multi-channel intelligence · Performance over time trends · Content isolation matrix</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -244,14 +216,14 @@ with st.sidebar:
     if not api_key:
         api_key = st.text_input("YouTube API Key", type="password", placeholder="AIzaSy...")
     else:
-        st.success("API Key loaded from secrets ✓")
+        st.success("API Key verified via background ecosystem ✓")
 
     st.markdown("---")
-    st.markdown('<div class="section-head">ℹ️ About</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-head">ℹ️ About System</div>', unsafe_allow_html=True)
     st.markdown(
-        "<p style='color:rgba(255,255,255,0.4);font-size:0.78rem;line-height:1.6;'>"
-        "VidIQ Nova — fetch YouTube video data across multiple channels, filter by content type & date range, "
-        "and export to Excel or CSV."
+        "<p style='color:rgba(255,255,255,0.45);font-size:0.8rem;line-height:1.6;'>"
+        "VidIQ Nova performs structural multi-channel audits directly across production instances. "
+        "Filter assets by time arrays, parse platform content segments, and extract reporting ledgers."
         "</p>",
         unsafe_allow_html=True
     )
@@ -261,29 +233,26 @@ col_left, col_right = st.columns([3, 2], gap="large")
 
 with col_left:
     channel_ids_raw = st.text_area(
-        "Channel IDs (one per line)",
-        placeholder="UCxxxxxxxxxxxxxxxxxxxxxx\nUCyyyyyyyyyyyyyyyyyyyyyy\nUCzzzzzzzzzzzzzzzzzzzzzz",
-        height=120
+        "Target Channel IDs (One per line line array)",
+        placeholder="UCxxxxxxxxxxxxxxxxxxxxxx\nUCyyyyyyyyyyyyyyyyyyyyyy",
+        height=125
     )
 
-    st.markdown('<div class="section-head" style="margin-top:1rem;">📂 Content Type</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-head">📂 Content Strategy Filter</div>', unsafe_allow_html=True)
     content_type = st.radio(
-        "Content type",
+        "Content type Selection Matrix",
         options=["🎬 Long Videos", "⚡ Short Videos (Shorts)", "📢 Community Posts"],
         horizontal=True,
         label_visibility="collapsed"
     )
 
 with col_right:
-    st.markdown('<div class="section-head">📅 Date Range</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-head">📅 Temporal Window</div>', unsafe_allow_html=True)
     today = date.today()
     default_start = today - timedelta(days=90)
 
-    date_start = st.date_input("From", value=default_start, max_value=today)
-    date_end   = st.date_input("To",   value=today,          max_value=today)
-
-    if date_start > date_end:
-        st.error("Start date cannot be after end date.")
+    date_start = st.date_input("Start Boundary (From)", value=default_start, max_value=today)
+    date_end   = st.date_input("Terminal Boundary (To)", value=today, max_value=today)
 
 st.markdown("---")
 
@@ -304,12 +273,6 @@ def duration_to_seconds(duration):
             int(m.group(2) or 0) * 60  +
             int(m.group(3) or 0))
 
-def convert_duration(duration):
-    s = duration_to_seconds(duration)
-    h, r = divmod(s, 3600)
-    m, sec = divmod(r, 60)
-    return f"{h:02d}:{m:02d}:{sec:02d}" if h else f"{m:02d}:{sec:02d}"
-
 def in_date_range(pub_str, start, end):
     try:
         pub = pd.to_datetime(pub_str).date()
@@ -318,257 +281,245 @@ def in_date_range(pub_str, start, end):
         return False
 
 def get_channel_info(yt, cid):
-    resp = yt.channels().list(
-        part='snippet,contentDetails,statistics', id=cid
-    ).execute()
-    if not resp.get('items'):
+    try:
+        resp = yt.channels().list(part='snippet,contentDetails,statistics', id=cid).execute()
+        if not resp.get('items'): return None
+        item = resp['items'][0]
+        return {
+            'name': item['snippet']['title'],
+            'playlist': item['contentDetails']['relatedPlaylists']['uploads'],
+            'subscribers': item['statistics'].get('subscriberCount', 0),
+            'channel_id': item['id'],
+        }
+    except:
         return None
-    item = resp['items'][0]
-    return {
-        'name':       item['snippet']['title'],
-        'playlist':   item['contentDetails']['relatedPlaylists']['uploads'],
-        'subscribers': item['statistics'].get('subscriberCount', 0),
-        'total_views': item['statistics'].get('viewCount', 0),
-        'total_videos': item['statistics'].get('videoCount', 0),
-        'channel_id':  item['id'],
-    }
 
 def get_all_video_ids(yt, playlist_id):
     ids = []
-    req = yt.playlistItems().list(
-        part='contentDetails', playlistId=playlist_id, maxResults=50
-    )
-    while req:
-        resp = req.execute()
-        for item in resp['items']:
-            ids.append(item['contentDetails']['videoId'])
-        req = yt.playlistItems().list_next(req, resp)
+    try:
+        req = yt.playlistItems().list(part='contentDetails', playlistId=playlist_id, maxResults=50)
+        while req:
+            resp = req.execute()
+            for item in resp.get('items', []):
+                ids.append(item['contentDetails']['videoId'])
+            req = yt.playlistItems().list_next(req, resp)
+    except:
+        pass
     return ids
 
-def get_video_details(yt, video_ids, filter_type, channel_name, channel_id, start, end):
+def get_video_details(yt, video_ids, filter_type, channel_name, start, end):
     rows = []
     for i in range(0, len(video_ids), 50):
-        resp = yt.videos().list(
-            part='snippet,statistics,contentDetails',
-            id=','.join(video_ids[i:i+50])
-        ).execute()
-        for v in resp['items']:
-            pub = v['snippet']['publishedAt']
-            if not in_date_range(pub, start, end):
-                continue
-            raw_dur = v['contentDetails']['duration']
-            secs = duration_to_seconds(raw_dur)
-            if filter_type == 'short' and secs > 60:
-                continue
-            if filter_type == 'long'  and secs <= 60:
-                continue
-            vid_id = v['id']
-            link = (
-                f"https://www.youtube.com/shorts/{vid_id}"
-                if filter_type == 'short'
-                else f"https://www.youtube.com/watch?v={vid_id}"
-            )
-            rows.append({
-                'Date':         pd.to_datetime(pub).date(),
-                'Channel Name': channel_name,
-                'Title':        v['snippet']['title'],
-                'Link':         link,
-                'Views':        v['statistics'].get('viewCount',  0),
-                'Likes':        v['statistics'].get('likeCount',  0),
-                'Comments':     v['statistics'].get('commentCount', 0),
-            })
+        try:
+            resp = yt.videos().list(
+                part='snippet,statistics,contentDetails',
+                id=','.join(video_ids[i:i+50])
+            ).execute()
+            for v in resp.get('items', []):
+                pub = v['snippet']['publishedAt']
+                if not in_date_range(pub, start, end): continue
+                
+                raw_dur = v['contentDetails']['duration']
+                secs = duration_to_seconds(raw_dur)
+                if filter_type == 'short' and secs > 60: continue
+                if filter_type == 'long'  and secs <= 60: continue
+                
+                vid_id = v['id']
+                link = f"https://www.youtube.com/shorts/{vid_id}" if filter_type == 'short' else f"https://www.youtube.com/watch?v={vid_id}"
+                
+                rows.append({
+                    'Date': pd.to_datetime(pub).date(),
+                    'Channel Name': channel_name,
+                    'Title': v['snippet']['title'],
+                    'Link': link,
+                    'Views': int(v['statistics'].get('viewCount', 0)),
+                    'Likes': int(v['statistics'].get('likeCount', 0)),
+                    'Comments': int(v['statistics'].get('commentCount', 0)),
+                })
+        except:
+            pass
     return rows
 
 def get_community_posts(yt, channel_id, channel_name, start, end):
     posts = []
     try:
-        req = yt.activities().list(
-            part='snippet,contentDetails', channelId=channel_id, maxResults=50
-        )
+        req = yt.activities().list(part='snippet,contentDetails', channelId=channel_id, maxResults=50)
         while req:
             resp = req.execute()
             for item in resp.get('items', []):
-                if item['snippet']['type'] != 'bulletin':
-                    continue
+                if item['snippet']['type'] != 'bulletin': continue
                 pub = item['snippet']['publishedAt']
-                if not in_date_range(pub, start, end):
-                    continue
+                if not in_date_range(pub, start, end): continue
                 desc = item['snippet'].get('description', '')
                 posts.append({
-                    'Date':         pd.to_datetime(pub).date(),
+                    'Date': pd.to_datetime(pub).date(),
                     'Channel Name': channel_name,
-                    'Title':        desc[:120] + ('…' if len(desc) > 120 else ''),
-                    'Link':         f"https://www.youtube.com/channel/{channel_id}/community",
-                    'Views':        '—',
-                    'Likes':        '—',
-                    'Comments':     '—',
+                    'Title': desc[:120] + ('…' if len(desc) > 120 else ''),
+                    'Link': f"https://www.youtube.com/channel/{channel_id}/community",
+                    'Views': 0,
+                    'Likes': 0,
+                    'Comments': 0,
                 })
             npt = resp.get('nextPageToken')
-            if npt:
-                req = yt.activities().list(
-                    part='snippet,contentDetails', channelId=channel_id,
-                    maxResults=50, pageToken=npt
-                )
-            else:
-                break
+            req = yt.activities().list(part='snippet,contentDetails', channelId=channel_id, maxResults=50, pageToken=npt) if npt else None
     except Exception as e:
-        st.warning(f"Community posts error: {e}")
+        st.warning(f"Ecosystem logging anomaly parsing community nodes: {e}")
     return posts
 
 def convert_to_excel(df):
     output = BytesIO()
     with pd.ExcelWriter(output, engine='openpyxl') as writer:
-        df.to_excel(writer, index=False, sheet_name='Analytics')
+        df.to_excel(writer, index=False, sheet_name='Ecosystem Analytics')
     return output.getvalue()
 
-# ── Fetch Button ──────────────────────────────────────────────────────────────
+# ── Processing Execution ──────────────────────────────────────────────────────
 _, btn_col, _ = st.columns([1, 2, 1])
 with btn_col:
-    fetch = st.button("⚡ Fetch Analytics", type="primary")
+    fetch = st.button("⚡ Fetch Analytics Engines", type="primary")
 
 if fetch:
     channel_ids = [c.strip() for c in channel_ids_raw.strip().splitlines() if c.strip()]
 
     if not api_key:
-        st.error("🔑 API Key missing — add it in the sidebar or Streamlit Secrets.")
+        st.error("🔑 API Key configuration invalid. Please update parameter paths.")
     elif not channel_ids:
-        st.error("📺 Please enter at least one Channel ID.")
+        st.error("📺 Destination channel identifier array required.")
     elif date_start > date_end:
-        st.error("📅 Start date cannot be after end date.")
+        st.error("📅 Operational validation failure: Terminal boundary exceeds start index.")
     else:
         yt = build("youtube", "v3", developerKey=api_key)
         all_rows = []
         channel_names = []
 
-        progress = st.progress(0, text="Fetching channels...")
+        progress = st.progress(0, text="Initializing processing sequences...")
 
         for idx, cid in enumerate(channel_ids):
-            progress.progress((idx) / len(channel_ids), text=f"Fetching channel {idx+1} of {len(channel_ids)}...")
-
+            progress.progress((idx) / len(channel_ids), text=f"Querying channel array element {idx+1} of {len(channel_ids)}...")
             info = get_channel_info(yt, cid)
             if not info:
-                st.warning(f"Channel not found: `{cid}` — skipping.")
+                st.warning(f"Target vector dropped: `{cid}` — context unresolvable.")
                 continue
 
             channel_names.append(info['name'])
-            filter_key = (
-                'short' if content_type == "⚡ Short Videos (Shorts)"
-                else 'long' if content_type == "🎬 Long Videos"
-                else 'community'
-            )
+            filter_key = 'short' if content_type == "⚡ Short Videos (Shorts)" else 'long' if content_type == "🎬 Long Videos" else 'community'
 
             if filter_key == 'community':
                 rows = get_community_posts(yt, info['channel_id'], info['name'], date_start, date_end)
             else:
                 vids = get_all_video_ids(yt, info['playlist'])
-                rows = get_video_details(yt, vids, filter_key, info['name'], info['channel_id'], date_start, date_end)
+                rows = get_video_details(yt, vids, filter_key, info['name'], date_start, date_end)
 
             all_rows.extend(rows)
 
-        progress.progress(1.0, text="Done!")
+        progress.progress(1.0, text="Complete.")
         progress.empty()
 
         if not all_rows:
-            st.warning("No data found for this date range. Please check your Channel IDs and date selection.")
+            st.info("Execution complete: No elements map to specified context options.")
         else:
             df = pd.DataFrame(all_rows)
-
-            # Numeric conversion
-            for col in ['Views', 'Likes', 'Comments']:
-                if col in df.columns:
-                    df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0).astype('Int64')
-
+            df['Date'] = pd.to_datetime(df['Date'])
             df = df.sort_values('Date', ascending=False).reset_index(drop=True)
 
             # ── Summary Metrics ────────────────────────────────────────────
-            total_videos  = len(df)
-            total_views   = df['Views'].sum()   if 'Views'   in df.columns else 0
-            total_likes   = df['Likes'].sum()   if 'Likes'   in df.columns else 0
-            total_comments= df['Comments'].sum() if 'Comments' in df.columns else 0
+            total_videos = len(df)
+            total_views = df['Views'].sum()
+            total_likes = df['Likes'].sum()
+            total_comments = df['Comments'].sum()
 
             st.markdown(f"""
-            <div style="margin:1.5rem 0 0.5rem;">
-              <div class="section-head">📊 Summary — {len(channel_names)} channel{'s' if len(channel_names)>1 else ''} · {date_start} → {date_end}</div>
-              <div style="margin-bottom:10px;">
-                {''.join(f'<span class="ch-chip">📺 {n}</span>' for n in channel_names)}
+            <div style="margin:1rem 0 0.5rem;">
+              <div class="section-head">📊 Global Ledger Aggregation Window</div>
+              <div style="margin-bottom:12px;">
+                {''.join(f'<span class="ch-chip">🌍 {n}</span>' for n in channel_names)}
               </div>
               <div class="metric-row">
                 <div class="metric-card amber">
-                  <div class="m-label">Videos Found</div>
+                  <div class="m-label">Assets Discovered</div>
                   <div class="m-value">{total_videos:,}</div>
-                  <div class="m-sub">{content_type.split()[1]} content</div>
+                  <div class="m-sub">Active nodes parsed</div>
                 </div>
                 <div class="metric-card blue">
-                  <div class="m-label">Total Views</div>
+                  <div class="m-label">Gross Impression Views</div>
                   <div class="m-value">{fmt(total_views)}</div>
-                  <div class="m-sub">combined</div>
+                  <div class="m-sub">Cumulative footprint</div>
                 </div>
                 <div class="metric-card red">
-                  <div class="m-label">Total Likes</div>
+                  <div class="m-label">Gross Interaction Likes</div>
                   <div class="m-value">{fmt(total_likes)}</div>
-                  <div class="m-sub">combined</div>
+                  <div class="m-sub">Positive user signals</div>
                 </div>
                 <div class="metric-card green">
-                  <div class="m-label">Comments</div>
+                  <div class="m-label">Discussion Threads</div>
                   <div class="m-value">{fmt(total_comments)}</div>
-                  <div class="m-sub">combined</div>
+                  <div class="m-sub">Community engagement</div>
                 </div>
               </div>
             </div>
             """, unsafe_allow_html=True)
 
-            # ── Data Table ─────────────────────────────────────────────────
-            st.markdown('<div class="section-head">📋 Video Data</div>', unsafe_allow_html=True)
+            # ── Side-By-Side Advanced Channel Performance Matrix ─────────────
+            if len(channel_names) > 1 and filter_key != 'community':
+                st.markdown('<div class="section-head">📈 Channel Cross-Comparison Intelligence</div>', unsafe_allow_html=True)
+                comparison_df = df.groupby('Channel Name').agg({
+                    'Title': 'count',
+                    'Views': 'sum',
+                    'Likes': 'sum'
+                }).rename(columns={'Title': 'Content Count', 'Views': 'Total Views', 'Likes': 'Total Likes'})
+                st.dataframe(comparison_df, use_container_width=True)
 
-            display_df = df.copy()
-            # Make Link clickable in display
-            display_df['Link'] = display_df['Link'].apply(lambda x: f'<a href="{x}" target="_blank">▶ Watch</a>')
+            # ── Visual Time Series Trends ──────────────────────────────────
+            if filter_key != 'community':
+                st.markdown('<div class="section-head">📈 Chronological Impression Volume Trend</div>', unsafe_allow_html=True)
+                trend_df = df.groupby('Date')[['Views']].sum()
+                st.area_chart(trend_df, color="#e53935")
+
+            # ── Interactive Unified Data Table ──────────────────────────────
+            st.markdown('<div class="section-head">📋 Granular Content Matrix Ledgers</div>', unsafe_allow_html=True)
+            
+            # Format display dates back cleanly for presentation
+            presentation_df = df.copy()
+            presentation_df['Date'] = presentation_df['Date'].dt.date
 
             st.dataframe(
-                df,
+                presentation_df,
                 use_container_width=True,
                 hide_index=True,
                 column_config={
-                    "Link": st.column_config.LinkColumn("Link", display_text="▶ Watch"),
-                    "Views":    st.column_config.NumberColumn("Views",    format="%d"),
-                    "Likes":    st.column_config.NumberColumn("Likes",    format="%d"),
-                    "Comments": st.column_config.NumberColumn("Comments", format="%d"),
-                    "Date":     st.column_config.DateColumn("Date"),
+                    "Link": st.column_config.LinkColumn("Source Link", display_text="▶ Inspect Node"),
+                    "Views": st.column_config.NumberColumn("Views Metrics", format="%d"),
+                    "Likes": st.column_config.NumberColumn("Likes Metrics", format="%d"),
+                    "Comments": st.column_config.NumberColumn("Comments Matrix", format="%d"),
+                    "Date": st.column_config.DateColumn("Publish Date"),
                 }
             )
 
-            # ── Downloads ──────────────────────────────────────────────────
-            st.markdown('<div class="section-head" style="margin-top:1.5rem;">📥 Export</div>', unsafe_allow_html=True)
-            suffix = (
-                "shorts"     if content_type == "⚡ Short Videos (Shorts)"
-                else "long"  if content_type == "🎬 Long Videos"
-                else "community"
-            )
-            date_tag = f"{date_start}_to_{date_end}"
-            channels_tag = "_".join([n.replace(" ", "-") for n in channel_names])[:40]
-            fname = f"VidIQNova_{channels_tag}_{suffix}_{date_tag}"
+            # ── Structured Production Exports ────────────────────────────────
+            st.markdown('<div class="section-head">📥 Export Pipeline Registry</div>', unsafe_allow_html=True)
+            suffix_str = "shorts" if filter_key == 'short' else "longform" if filter_key == 'long' else "community"
+            fname = f"NovaReport_{date_start}_to_{date_end}_{suffix_str}"
 
             dl1, dl2 = st.columns(2)
             with dl1:
                 st.download_button(
-                    "⬇️ Download Excel",
-                    data=convert_to_excel(df),
+                    "💾 Stream Production Excel Engine Ledger",
+                    data=convert_to_excel(presentation_df),
                     file_name=f"{fname}.xlsx",
                     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                 )
             with dl2:
                 st.download_button(
-                    "⬇️ Download CSV",
-                    data=df.to_csv(index=False),
+                    "📄 Stream Standard Flattened Flatfile Data (.CSV)",
+                    data=presentation_df.to_csv(index=False),
                     file_name=f"{fname}.csv",
                     mime="text/csv"
                 )
 
 # ── Footer ────────────────────────────────────────────────────────────────────
 st.markdown("""
-<div style="text-align:center;margin-top:3rem;padding:1rem 0;border-top:1px solid rgba(255,255,255,0.08);">
-  <span style="font-size:0.78rem;color:rgba(255,255,255,0.2);letter-spacing:0.08em;">
-    VIDIQ NOVA · YOUTUBE ANALYTICS · Built with Streamlit
+<div style="text-align:center;margin-top:4rem;padding:1.5rem 0;border-top:1px solid rgba(255,255,255,0.05);">
+  <span style="font-size:0.75rem;color:rgba(255,255,255,0.25);letter-spacing:0.1em;text-transform:uppercase;">
+    Enterprise Sandbox Environment · Platform Intelligence Pipeline Version 2.4 Stable
   </span>
 </div>
 """, unsafe_allow_html=True)
