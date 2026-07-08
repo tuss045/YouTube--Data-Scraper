@@ -85,7 +85,7 @@ header[data-testid="stHeader"] { background: transparent; }
 }
 .metric-card {
     flex: 1;
-    min-width: 180px;
+    min-width: 160px;
     background: rgba(255,255,255,0.03);
     border: 1px solid rgba(255,255,255,0.07);
     border-radius: 14px;
@@ -123,6 +123,8 @@ header[data-testid="stHeader"] { background: transparent; }
 .metric-card.green .m-value { color: #81c784; }
 .metric-card.amber { border-color: rgba(255, 183, 77, 0.3); background: rgba(255, 183, 77, 0.02); }
 .metric-card.amber .m-value { color: #ffb74d; }
+.metric-card.purple { border-color: rgba(156, 39, 176, 0.3); background: rgba(156, 39, 176, 0.02); }
+.metric-card.purple .m-value { color: #ce93d8; }
 
 /* Channel tag chips */
 .ch-chip {
@@ -153,11 +155,6 @@ div[data-testid="stTextArea"] textarea {
     border: 1px solid rgba(255,255,255,0.12) !important;
     border-radius: 10px !important;
     color: #fff !important;
-}
-div[data-testid="stTextInput"] input:focus,
-div[data-testid="stDateInput"] input:focus,
-div[data-testid="stTextArea"] textarea:focus {
-    border-color: #e53935 !important;
 }
 
 /* Primary button styling */
@@ -190,11 +187,6 @@ div[data-testid="stDownloadButton"] > button {
     padding: 0.5rem 1rem !important;
     font-weight: 500 !important;
     width: 100% !important;
-    transition: background 0.2s;
-}
-div[data-testid="stDownloadButton"] > button:hover {
-    background: rgba(255,255,255,0.1) !important;
-    border-color: rgba(255,255,255,0.25) !important;
 }
 
 hr { border-color: rgba(255,255,255,0.06) !important; }
@@ -205,7 +197,7 @@ hr { border-color: rgba(255,255,255,0.06) !important; }
 st.markdown("""
 <div class="hero">
   <div class="hero-title">VidIQ <span>Nova</span></div>
-  <p class="hero-sub">Multi-channel intelligence · Performance over time trends · Content isolation matrix</p>
+  <p class="hero-sub">Multi-channel intelligence · Engagement Arrays · Stay-To-Watch Audience Retention Signals</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -222,8 +214,8 @@ with st.sidebar:
     st.markdown('<div class="section-head">ℹ️ About System</div>', unsafe_allow_html=True)
     st.markdown(
         "<p style='color:rgba(255,255,255,0.45);font-size:0.8rem;line-height:1.6;'>"
-        "VidIQ Nova performs structural multi-channel audits directly across production instances. "
-        "Filter assets by time arrays, parse platform content segments, and extract reporting ledgers."
+        "VidIQ Nova performs deep audience engagement analytics. Tracking retention proxies "
+        "and multi-channel traction velocity across custom operational boundaries."
         "</p>",
         unsafe_allow_html=True
     )
@@ -233,7 +225,7 @@ col_left, col_right = st.columns([3, 2], gap="large")
 
 with col_left:
     channel_ids_raw = st.text_area(
-        "Target Channel IDs (One per line line array)",
+        "Target Channel IDs (One per line)",
         placeholder="UCxxxxxxxxxxxxxxxxxxxxxx\nUCyyyyyyyyyyyyyyyyyyyyyy",
         height=125
     )
@@ -327,14 +319,24 @@ def get_video_details(yt, video_ids, filter_type, channel_name, start, end):
                 vid_id = v['id']
                 link = f"https://www.youtube.com/shorts/{vid_id}" if filter_type == 'short' else f"https://www.youtube.com/watch?v={vid_id}"
                 
+                views = int(v['statistics'].get('viewCount', 0))
+                likes = int(v['statistics'].get('likeCount', 0))
+                comments = int(v['statistics'].get('commentCount', 0))
+                
+                # Metric Engine Mathematics
+                eng_rate = round(((likes + comments) / views * 100), 2) if views > 0 else 0.0
+                stay_watch = round((likes / views * 100), 2) if views > 0 else 0.0
+
                 rows.append({
                     'Date': pd.to_datetime(pub).date(),
                     'Channel Name': channel_name,
                     'Title': v['snippet']['title'],
                     'Link': link,
-                    'Views': int(v['statistics'].get('viewCount', 0)),
-                    'Likes': int(v['statistics'].get('likeCount', 0)),
-                    'Comments': int(v['statistics'].get('commentCount', 0)),
+                    'Views': views,
+                    'Likes': likes,
+                    'Comments': comments,
+                    'Engagement Rate (%)': eng_rate,
+                    'Stay-To-Watch (%)': stay_watch
                 })
         except:
             pass
@@ -359,11 +361,13 @@ def get_community_posts(yt, channel_id, channel_name, start, end):
                     'Views': 0,
                     'Likes': 0,
                     'Comments': 0,
+                    'Engagement Rate (%)': 0.0,
+                    'Stay-To-Watch (%)': 0.0
                 })
             npt = resp.get('nextPageToken')
             req = yt.activities().list(part='snippet,contentDetails', channelId=channel_id, maxResults=50, pageToken=npt) if npt else None
     except Exception as e:
-        st.warning(f"Ecosystem logging anomaly parsing community nodes: {e}")
+        st.warning(f"Error parsing community nodes: {e}")
     return posts
 
 def convert_to_excel(df):
@@ -426,6 +430,10 @@ if fetch:
             total_views = df['Views'].sum()
             total_likes = df['Likes'].sum()
             total_comments = df['Comments'].sum()
+            
+            # Global Average Metrics
+            global_eng = round(((total_likes + total_comments) / total_views * 100), 2) if total_views > 0 else 0.0
+            global_stay = round((total_likes / total_views * 100), 2) if total_views > 0 else 0.0
 
             st.markdown(f"""
             <div style="margin:1rem 0 0.5rem;">
@@ -440,19 +448,19 @@ if fetch:
                   <div class="m-sub">Active nodes parsed</div>
                 </div>
                 <div class="metric-card blue">
-                  <div class="m-label">Gross Impression Views</div>
+                  <div class="m-label">Gross Views</div>
                   <div class="m-value">{fmt(total_views)}</div>
                   <div class="m-sub">Cumulative footprint</div>
                 </div>
                 <div class="metric-card red">
-                  <div class="m-label">Gross Interaction Likes</div>
-                  <div class="m-value">{fmt(total_likes)}</div>
-                  <div class="m-sub">Positive user signals</div>
+                  <div class="m-label">Avg Engagement</div>
+                  <div class="m-value">{global_eng}%</div>
+                  <div class="m-sub">Interaction Velocity</div>
                 </div>
-                <div class="metric-card green">
-                  <div class="m-label">Discussion Threads</div>
-                  <div class="m-value">{fmt(total_comments)}</div>
-                  <div class="m-sub">Community engagement</div>
+                <div class="metric-card purple">
+                  <div class="m-label">Stay-To-Watch</div>
+                  <div class="m-value">{global_stay}%</div>
+                  <div class="m-sub">Retention Signalling</div>
                 </div>
               </div>
             </div>
@@ -464,20 +472,25 @@ if fetch:
                 comparison_df = df.groupby('Channel Name').agg({
                     'Title': 'count',
                     'Views': 'sum',
-                    'Likes': 'sum'
-                }).rename(columns={'Title': 'Content Count', 'Views': 'Total Views', 'Likes': 'Total Likes'})
-                st.dataframe(comparison_df, use_container_width=True)
+                    'Engagement Rate (%)': 'mean',
+                    'Stay-To-Watch (%)': 'mean'
+                }).rename(columns={
+                    'Title': 'Content Count', 
+                    'Views': 'Total Views', 
+                    'Engagement Rate (%)': 'Avg Engagement (%)',
+                    'Stay-To-Watch (%)': 'Avg Retention Proxy (%)'
+                })
+                st.dataframe(comparison_df.style.format(precision=2), use_container_width=True)
 
             # ── Visual Time Series Trends ──────────────────────────────────
             if filter_key != 'community':
-                st.markdown('<div class="section-head">📈 Chronological Impression Volume Trend</div>', unsafe_allow_html=True)
-                trend_df = df.groupby('Date')[['Views']].sum()
-                st.area_chart(trend_df, color="#e53935")
+                st.markdown('<div class="section-head">📈 Dynamic Audience Retention & Engagement Over Time</div>', unsafe_allow_html=True)
+                trend_df = df.groupby('Date')[['Engagement Rate (%)', 'Stay-To-Watch (%)']].mean()
+                st.line_chart(trend_df, color=["#ff7373", "#ce93d8"])
 
             # ── Interactive Unified Data Table ──────────────────────────────
             st.markdown('<div class="section-head">📋 Granular Content Matrix Ledgers</div>', unsafe_allow_html=True)
             
-            # Format display dates back cleanly for presentation
             presentation_df = df.copy()
             presentation_df['Date'] = presentation_df['Date'].dt.date
 
@@ -490,6 +503,8 @@ if fetch:
                     "Views": st.column_config.NumberColumn("Views Metrics", format="%d"),
                     "Likes": st.column_config.NumberColumn("Likes Metrics", format="%d"),
                     "Comments": st.column_config.NumberColumn("Comments Matrix", format="%d"),
+                    "Engagement Rate (%)": st.column_config.ProgressColumn("Engagement Rate", format="%.2f%%", min_value=0, max_value=25),
+                    "Stay-To-Watch (%)": st.column_config.ProgressColumn("Stay To Watch", format="%.2f%%", min_value=0, max_value=20),
                     "Date": st.column_config.DateColumn("Publish Date"),
                 }
             )
@@ -519,7 +534,7 @@ if fetch:
 st.markdown("""
 <div style="text-align:center;margin-top:4rem;padding:1.5rem 0;border-top:1px solid rgba(255,255,255,0.05);">
   <span style="font-size:0.75rem;color:rgba(255,255,255,0.25);letter-spacing:0.1em;text-transform:uppercase;">
-    Enterprise Sandbox Environment · Platform Intelligence Pipeline Version 2.4 Stable
+    Enterprise Sandbox Environment · Platform Intelligence Pipeline Version 2.5 Stable
   </span>
 </div>
 """, unsafe_allow_html=True)
